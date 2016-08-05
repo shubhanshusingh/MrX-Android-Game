@@ -53,35 +53,35 @@ public class PlayerControllerScript : MonoBehaviour {
 	}
 	void FixedUpdate()
 	{
-				
+				Vector3 PlayerJumpVector = transform.localScale;
+				Debug.Log (PlayerJumpVector.ToString ()+ "intial vector");
+				int i = 0;
+				if (Input.GetKey ("space")) {
+						animator.SetBool ("IsJumping", true);
+						PlayerJumpVector.y = PlayerJumpVector.y + 0.5f;
+						transform.localPosition = transform.localPosition + PlayerJumpVector;
+						PlayerJumpVector = PlayerJumpVector + Vector3.up;
+						transform.Translate(PlayerJumpVector);
+						Debug.Log (PlayerJumpVector.ToString ()+ "after jump vector");
+				}
+
+				while (i < Input.touchCount) {
+						if (Input.GetTouch (i).phase == TouchPhase.Began)
+						{
+								animator.SetBool ("IsJumping", true);
+								PlayerJumpVector = PlayerJumpVector + Vector3.up;
+								transform.Translate(PlayerJumpVector);
+								Debug.Log (PlayerJumpVector.ToString ()+ "after jump vector");
+								PlayerJumpVector.y = PlayerJumpVector.y + 0.5f;
+								transform.localPosition = transform.localPosition + PlayerJumpVector;
+						}
+
+						++i;}
+					
 	}
 	void LateUpdate()
 	{//
-		Vector3 PlayerJumpVector = transform.localScale;
-		Debug.Log (PlayerJumpVector.ToString ()+ "intial vector");
-		int i = 0;
-		if (Input.GetKey ("space")) {
-			animator.SetBool ("IsJumping", true);
-				PlayerJumpVector.y = PlayerJumpVector.y + 0.5f;
-				transform.localPosition = transform.localPosition + PlayerJumpVector;
-			PlayerJumpVector = PlayerJumpVector + Vector3.up;
-			transform.Translate(PlayerJumpVector);
-			Debug.Log (PlayerJumpVector.ToString ()+ "after jump vector");
-		}
 
-		while (i < Input.touchCount) {
-			if (Input.GetTouch (i).phase == TouchPhase.Began)
-			{
-				animator.SetBool ("IsJumping", true);
-				PlayerJumpVector = PlayerJumpVector + Vector3.up;
-				transform.Translate(PlayerJumpVector);
-				Debug.Log (PlayerJumpVector.ToString ()+ "after jump vector");
-				PlayerJumpVector.y = PlayerJumpVector.y + 0.5f;
-					transform.localPosition = transform.localPosition + PlayerJumpVector;
-			}
-			
-			++i;}
-		
 		
 		
 	}

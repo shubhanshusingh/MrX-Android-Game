@@ -20,5 +20,5 @@ public class ZombieRunningScript : MonoBehaviour {
 		//zombieTransform = zombieTransform - Vector3.left;
 		//transform.Translate (zombieTransform);
 		//transform.position += Vector3.left * Time.deltaTime;
-		gameObject.rigidbody2D.velocity = new Vector2 (-3f, 0);
+		gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (-3f, 0);
 	}}
